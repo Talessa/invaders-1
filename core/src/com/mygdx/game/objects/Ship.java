@@ -14,6 +14,7 @@ public class Ship {
 
     Vector2 position;
 
+    int life = 3;
     State state;
     float stateTime;
     float speed = 5;
@@ -22,11 +23,13 @@ public class Ship {
 
     Weapon weapon;
 
-    Ship(int initialPosition){
+    int player;
+
+    Ship(int initialPosition,int player){
         position = new Vector2(initialPosition, 10);
         state = State.IDLE;
         stateTime = 0;
-
+        this.player=player;
         weapon = new Weapon();
     }
 
@@ -59,6 +62,7 @@ public class Ship {
 
     public void update(float delta, Assets assets) {
         stateTime += delta;
+
 
         if(Controls.isLeftPressed()){
             moveLeft();
@@ -98,6 +102,12 @@ public class Ship {
     }
 
     public void damage() {
+        life--;
+        System.out.println(life);
+        if (life==0){
+            System.out.println("Has perdido");
+            System.exit(0);
+        }
 
     }
 }

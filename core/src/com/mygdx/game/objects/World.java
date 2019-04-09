@@ -8,6 +8,7 @@ import com.mygdx.game.Assets;
 public class World {
     Space space;
     Ship ship;
+    Ship ship2;
     AlienArmy alienArmy;
 
     int WORLD_WIDTH, WORLD_HEIGHT;
@@ -17,7 +18,8 @@ public class World {
         this.WORLD_HEIGHT = WORLD_HEIGHT;
 
         space = new Space();
-        ship = new Ship(WORLD_WIDTH/2);
+        ship = new Ship(WORLD_WIDTH/4,1);
+        ship2 = new Ship(WORLD_WIDTH/3,2);
         alienArmy = new AlienArmy(WORLD_WIDTH, WORLD_HEIGHT);
     }
 
@@ -36,8 +38,8 @@ public class World {
         space.update(delta, assets);
         ship.update(delta, assets);
         alienArmy.update(delta, assets);
-
         checkCollisions(assets);
+        winPlay();
     }
 
     private void checkCollisions(Assets assets) {
@@ -96,6 +98,13 @@ public class World {
             ship.position.x = WORLD_WIDTH-32;
         } else if(ship.position.x < 0){
             ship.position.x = 0;
+        }
+    }
+
+    private void winPlay(){
+        if (alienArmy.aliens.size==0){
+            System.out.println("Has ganado");
+            System.exit(0);
         }
     }
 }

@@ -78,18 +78,26 @@ public class AlienArmy {
 
     void move() {
         if (moveTimer.check()){
+            boolean borde=false;
             x += speed;
 
             if(x > maxX){
                 x = maxX;
+                borde=true;
                 speed *= -1;
             } else if(x < 0){
                 x = 0;
+                borde=true;
                 speed *= -1;
             }
 
             for (Alien alien : aliens) {
                 alien.position.x += speed;
+            }
+            if (borde){
+                for (Alien alien : aliens) {
+                    alien.position.y -= 4;
+                }
             }
         }
     }
