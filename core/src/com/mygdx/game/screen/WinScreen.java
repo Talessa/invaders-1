@@ -5,9 +5,8 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.mygdx.game.SpaceInvaders;
-import com.mygdx.game.objects.World;
 
-public class GameScreen extends SpaceInvadersScreen {
+public class WinScreen extends SpaceInvadersScreen {
 
     public SpriteBatch spriteBatch;
 
@@ -17,10 +16,8 @@ public class GameScreen extends SpaceInvadersScreen {
     public int SCENE_WIDTH = 384;
     public int SCENE_HEIGHT = 256;
 
-    World world;
-
-    public GameScreen(SpaceInvaders spaceInvaders) {
-        super(spaceInvaders);
+    public WinScreen(SpaceInvaders game) {
+        super(game);
     }
 
     @Override
@@ -32,14 +29,11 @@ public class GameScreen extends SpaceInvadersScreen {
 
         spriteBatch = new SpriteBatch();
 
-        world = new World(SCENE_WIDTH, SCENE_HEIGHT);
     }
 
     @Override
     public void render(float delta) {
         spriteBatch.setProjectionMatrix(camera.combined);
-        world.render(delta, spriteBatch, assets);
-
     }
 
     @Override

@@ -22,8 +22,9 @@ public class AlienArmy {
 
     AlienArmy(int WORLD_WIDTH, int WORLD_HEIGHT){
 
+
         this.x = 0;
-        this.y = WORLD_HEIGHT-30;
+        this.y = WORLD_HEIGHT-35;
         this.maxX = 60;
 
         aliens = new Array<Alien>();

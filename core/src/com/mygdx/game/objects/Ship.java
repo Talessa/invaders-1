@@ -14,10 +14,11 @@ public class Ship {
 
     Vector2 position;
 
-    int life = 3;
+    int life;
     State state;
     float stateTime;
     float speed = 5;
+    boolean dead= false;
 
     TextureRegion frame;
 
@@ -31,7 +32,9 @@ public class Ship {
         stateTime = 0;
         this.player=player;
         weapon = new Weapon();
+        this.life=3;
     }
+
 
 
     void setFrame(Assets assets){
@@ -55,26 +58,40 @@ public class Ship {
     }
 
     void render(SpriteBatch batch){
-        batch.draw(frame, position.x, position.y);
+        if (!dead) {
+            batch.draw(frame, position.x, position.y);
 
-        weapon.render(batch);
+            weapon.render(batch);
+        }
     }
 
     public void update(float delta, Assets assets) {
         stateTime += delta;
 
-
-        if(Controls.isLeftPressed()){
-            moveLeft();
-        } else if(Controls.isRightPressed()){
-            moveRight();
-        } else {
-            idle();
-        }
-
-        if(Controls.isShootPressed()) {
-            shoot();
-            assets.shootSound.play();
+        if (player==1 && !dead) {
+            if (Controls.isLeftPressed1()) {
+                moveLeft();
+            } else if (Controls.isRightPressed1()) {
+                moveRight();
+            } else {
+                idle();
+            }
+            if (Controls.isShootPressed1()) {
+                shoot();
+                assets.shootSound.play();
+            }
+        }else if (player==2 && !dead){
+            if (Controls.isLeftPressed2()) {
+                moveLeft();
+            } else if (Controls.isRightPressed2()) {
+                moveRight();
+            } else {
+                idle();
+            }
+            if (Controls.isShootPressed2()) {
+                shoot();
+                assets.shootSound.play();
+            }
         }
 
         setFrame(assets);
@@ -102,11 +119,12 @@ public class Ship {
     }
 
     public void damage() {
-        life--;
-        System.out.println(life);
-        if (life==0){
-            System.out.println("Has perdido");
-            System.exit(0);
+        if (!dead) {
+            life--;
+            System.out.println(life);
+            if (life == 0) {
+                dead = true;
+            }
         }
 
     }
