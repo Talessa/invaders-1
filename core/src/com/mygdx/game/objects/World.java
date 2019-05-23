@@ -13,8 +13,8 @@ public class World {
     AlienArmy alienArmy;
     HUD hud1;
     HUD hud2;
-    boolean lose=false;
-    boolean win = false;
+    public boolean lose=false;
+    public boolean win = false;
 
 
     int WORLD_WIDTH, WORLD_HEIGHT;
@@ -154,7 +154,7 @@ public class World {
         if (alienArmy.aliens.size==0){
            win=true;
            System.out.println("Habéis ganado");
-           System.exit(0);
+         //  System.exit(0);
         }
     }
 
@@ -163,7 +163,7 @@ public class World {
         if (ship.dead && ship2.dead ){
             lose=true;
             System.out.println("Habéis perdido");
-            System.exit(0);
+           // System.exit(0);
         }
 
     }

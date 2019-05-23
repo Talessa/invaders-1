@@ -39,7 +39,12 @@ public class GameScreen extends SpaceInvadersScreen {
     public void render(float delta) {
         spriteBatch.setProjectionMatrix(camera.combined);
         world.render(delta, spriteBatch, assets);
-
+        if(world.win){
+            setScreen(new WinScreen(game));
+        }
+        if (world.lose){
+            setScreen(new LoseScreen(game));
+        }
     }
 
     @Override
